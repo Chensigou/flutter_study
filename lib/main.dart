@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_study/study/dialog_style.dart';
 import 'package:flutter_study/widget/architecture_page.dart';
 import 'package:flutter_study/widget/advanced_page.dart';
 import 'package:flutter_study/widget/demo_animation/animation_page.dart';
@@ -24,16 +25,30 @@ import 'package:flutter_study/widget/demo_network/network_page.dart';
 import 'package:flutter_study/widget/demo_route/route_page.dart';
 import 'package:flutter_study/widget/demo_route/route_page_with_value_one.dart';
 import 'package:flutter_study/widget/home_page.dart';
+import 'package:flutter/foundation.dart';
 //import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
+
+final ThemeData kIOSTheme = new ThemeData(
+  //Cupertino主题风格
+  primarySwatch: Colors.orange,
+  primaryColor: Colors.grey[100],
+  primaryColorBrightness: Brightness.light,
+);
+
+final ThemeData kDefaultTheme = new ThemeData(
+  //默认的Material主题风格
+  primarySwatch: Colors.purple,
+  accentColor: Colors.orangeAccent[400],
+);
 
 void main() {
 //  debugPaintSizeEnabled = true;      //打开视觉调试开关
 
   runApp(new MaterialApp(
-//    theme: defaultTargetPlatform == TargetPlatform.iOS
-//        ? kiOSTheme
-//        : kAndroidTheme,
-//    theme: kAndroidTheme,
+    theme: defaultTargetPlatform != TargetPlatform.iOS
+        ? kIOSTheme
+        : kDefaultTheme,
+//    theme: kDefaultTheme,
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -65,5 +80,6 @@ void main() {
     '/CountReduxPage': (BuildContext context) => new CountReduxPage(),
     '/ArchitecturePage': (BuildContext context) => new ArchitecturePage(),
     '/ChannelPage': (BuildContext context) => new ChannelPage(),
+    '/DialogPage': (BuildContext context) => new DialogPage(),
   }, home: new HomePage()));
 }

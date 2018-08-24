@@ -8,19 +8,28 @@ class DrawerWeiget extends StatefulWidget {
 }
 
 class _DrawerWeigetState extends State<DrawerWeiget> {
+  var text = 'XXXXX';
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return new ListView(
-        padding: const EdgeInsets.only(),
-        children: <Widget>[
+      padding: const EdgeInsets.only(),
+      children: <Widget>[
         new UserAccountsDrawerHeader(
-          accountName: new Text('XXXXX'),
+          accountName: new Text(text),
           accountEmail: new Text('XXXXXXXXXXX'),
           currentAccountPicture: new CircleAvatar(
             backgroundImage: new NetworkImage(
                 'http://n.sinaimg.cn/translate/20170726/Zjd3-fyiiahz2863063.jpg'),
           ),
+          onDetailsPressed: () {
+            setState(() {
+              text = text == 'Hello!' ? 'XXXXX' : 'Hello';
+            });
+            Navigator.of(context).pop();
+            Navigator.pushNamed(context, '/DialogPage');
+          },
         ),
         new ListTile(
             title: new Text('lifecycle 学习'),
@@ -103,7 +112,7 @@ class DrawerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-       body:new DrawerWeiget(),
+      body: new DrawerWeiget(),
     );
   }
 }
